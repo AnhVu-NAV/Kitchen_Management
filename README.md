@@ -75,7 +75,7 @@ INNER JOIN Classes ON Students.ClassID = Classes.ClassID;
 SELECT Teachers.FirstName, Teachers.LastName, Classes.ClassName
 FROM Teachers
 INNER JOIN Classes ON Teachers.TeacherID = Classes.TeacherID;
-
+```
 ### Query using outer join
 ```sql
 -- Truy vấn thông tin giáo viên và lớp học, bao gồm cả giáo viên không chủ nhiệm lớp nào
@@ -87,7 +87,7 @@ LEFT OUTER JOIN Classes ON Teachers.TeacherID = Classes.TeacherID;
 SELECT Classes.ClassName, Students.FirstName, Students.LastName
 FROM Classes
 LEFT OUTER JOIN Students ON Classes.ClassID = Students.ClassID;
-
+```
 
 ### Using subquery in where
 ```sql
@@ -100,7 +100,7 @@ WHERE MealID IN (SELECT MealID FROM MealPlans WHERE ClassID = 1 AND DayOfWeek = 
 SELECT FirstName, LastName
 FROM Students
 WHERE StudentID NOT IN (SELECT StudentID FROM StudentAllergies);
-
+```
 
 ### Using subquery in from
 ```sql
@@ -113,7 +113,7 @@ INNER JOIN Classes ON SubQuery.ClassID = Classes.ClassID;
 SELECT Meals.MealName, TotalCost
 FROM (SELECT MealID, SUM(Quantity * PricePerUnit) AS TotalCost FROM MealIngredients INNER JOIN Ingredients ON MealIngredients.IngredientID = Ingredients.IngredientID GROUP BY MealID) AS SubQuery
 INNER JOIN Meals ON SubQuery.MealID = Meals.MealID;
-
+```
 
 ### Query using group by and aggregate functions
 ```sql
@@ -140,3 +140,4 @@ SELECT Meals.MealName, Meals.Description
 FROM Meals
 INNER JOIN MealPlans ON Meals.MealID = MealPlans.MealID
 WHERE MealPlans.DayOfWeek = 'Monday';
+```

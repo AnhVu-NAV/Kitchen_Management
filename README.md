@@ -2,7 +2,7 @@
 # Hệ thống Quản lý Bếp ăn của Trường Mẫu giáo
 
 ## Giới thiệu
-Hệ thống Quản lý Bếp ăn của Trường Mẫu giáo là một dự án nhằm thiết kế, triển khai và thao tác một cơ sở dữ liệu trong SQL Server theo các yêu cầu của một hệ thống quản lý bếp ăn. Hệ thống này giúp quản lý thông tin về học sinh, lớp học, giáo viên, các bữa ăn, nguyên liệu, kế hoạch bữa ăn và các dị ứng của học sinh.
+Hệ thống Quản lý Bếp ăn của Trường Mẫu giáo là một dự án nhằm thiết kế, triển khai và thao tác một cơ sở dữ liệu trong SQL Server theo các yêu cầu của một hệ thống quản lý bếp ăn. Hệ thống này giúp quản lý thông tin về học sinh, lớp học, giáo viên, các bữa ăn, nguyên liệu, kế hoạch bữa ăn và những thứ gây dị ứng của học sinh.
 
 ## Cấu trúc dự án
 Dự án bao gồm các file SQL để tạo và quản lý cơ sở dữ liệu, bao gồm:

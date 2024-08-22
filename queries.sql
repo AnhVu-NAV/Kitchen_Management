@@ -1,11 +1,11 @@
 ﻿-- a. Query using inner join
 -- Truy vấn thông tin học sinh và lớp học của họ
-SELECT Students.FirstName, Students.LastName, Classes.ClassName
+SELECT (Students.FirstName + ' ' + Students.LastName) as FullName, Classes.ClassName
 FROM Students
 INNER JOIN Classes ON Students.ClassID = Classes.ClassID;
 
 -- Truy vấn thông tin giáo viên và lớp học mà họ chủ nhiệm
-SELECT Teachers.FirstName, Teachers.LastName, Classes.ClassName
+SELECT (Teachers.FirstName + ' ' + Teachers.LastName) as FullName, Classes.ClassName
 FROM Teachers
 INNER JOIN Classes ON Teachers.TeacherID = Classes.TeacherID;
 
@@ -39,21 +39,26 @@ INNER JOIN Classes ON SubQuery.ClassID = Classes.ClassID;
 
 -- Truy vấn tổng chi phí nguyên liệu cho mỗi bữa ăn
 SELECT Meals.MealName, TotalCost
-FROM (SELECT MealID, SUM(Quantity * PricePerUnit) AS TotalCost FROM MealIngredients INNER JOIN Ingredients ON MealIngredients.IngredientID = Ingredients.IngredientID GROUP BY MealID) AS SubQuery
+FROM (
+    SELECT MealID, SUM(MI.Quantity * I.PricePerUnit) AS TotalCost 
+    FROM MealIngredients MI
+    INNER JOIN Ingredients I ON MI.IngredientID = I.IngredientID 
+    GROUP BY MealID
+) AS SubQuery
 INNER JOIN Meals ON SubQuery.MealID = Meals.MealID;
 
 -- e. Query using group by and aggregate functions
--- Truy vấn tổng số lượng mỗi nguyên liệu cần thiết
-SELECT IngredientName, SUM(Quantity) AS TotalQuantity
-FROM MealIngredients
-INNER JOIN Ingredients ON MealIngredients.IngredientID = Ingredients.IngredientID
-GROUP BY IngredientName;
+SELECT I.IngredientName, SUM(MI.Quantity) AS TotalQuantity
+FROM MealIngredients MI
+INNER JOIN Ingredients I ON MI.IngredientID = I.IngredientID
+GROUP BY I.IngredientName;
+
 
 -- Truy vấn tổng chi phí nguyên liệu cho mỗi loại nguyên liệu
-SELECT IngredientName, SUM(Quantity * PricePerUnit) AS TotalCost
-FROM MealIngredients
-INNER JOIN Ingredients ON MealIngredients.IngredientID = Ingredients.IngredientID
-GROUP BY IngredientName;
+SELECT I.IngredientName, SUM(MI.Quantity * I.PricePerUnit) AS TotalCost
+FROM MealIngredients MI
+INNER JOIN Ingredients I ON MI.IngredientID = I.IngredientID
+GROUP BY I.IngredientName;
 
 -- Tổng số suất ăn trong một ngày cụ thể
 SELECT DayOfWeek, COUNT(*) AS TotalMeals

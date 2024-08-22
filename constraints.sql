@@ -37,3 +37,11 @@ ADD CONSTRAINT FK_StudentAllergies_Students FOREIGN KEY (StudentID) REFERENCES S
 -- Khóa ngoại AllergyID trong bảng StudentAllergies tham chiếu đến khóa chính AllergyID trong bảng Allergies
 ALTER TABLE StudentAllergies
 ADD CONSTRAINT FK_StudentAllergies_Allergies FOREIGN KEY (AllergyID) REFERENCES Allergies(AllergyID);
+
+--Thêm một cột mới vào bảng
+ALTER TABLE Teachers
+ADD Address VARCHAR(255);
+
+--Thay đổi kiểu dữ liệu của một cột
+ALTER TABLE Teachers
+ALTER COLUMN PhoneNumber VARCHAR(20);

@@ -10,6 +10,9 @@ BEGIN
     PRINT 'New student added: ' + @FirstName + ' ' + @LastName + ' with ID: ' + CAST(@StudentID AS VARCHAR);
 END;
 
+INSERT INTO Students (StudentID, FirstName, LastName, DateOfBirth, ClassID)
+VALUES (31, 'Pham', 'Tuan', '2018-11-15', 3);
+
 
 --Trigger kích hoạt sau khi thêm bữa ăn mới.
 CREATE TRIGGER trgAfterInsertMeal
@@ -23,4 +26,5 @@ BEGIN
     PRINT 'New meal added: ' + @MealName + ' with ID: ' + CAST(@MealID AS VARCHAR);
 END;
 
-
+INSERT INTO Meals (MealID, MealName, Description)
+VALUES (31, 'Grilled Salmon', 'Grilled salmon served with steamed vegetables');

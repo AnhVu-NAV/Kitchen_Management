@@ -8,6 +8,7 @@ BEGIN
     WHERE ClassID = @ClassID;
 END;
 
+EXEC GetStudentsByClassID @ClassID = 1;
 
 --Lấy danh sách bữa ăn trong một ngày cụ thể
 CREATE PROCEDURE GetMealsByDay
@@ -20,6 +21,7 @@ BEGIN
     WHERE MealPlans.DayOfWeek = @DayOfWeek;
 END;
 
+EXEC GetMealsByDay @DayOfWeek = 'Monday';
 
 --Lấy danh sách học sinh có dị ứng cụ thể
 CREATE PROCEDURE GetStudentsWithAllergies
@@ -32,6 +34,7 @@ BEGIN
     WHERE StudentAllergies.AllergyID = @AllergyID;
 END;
 
+EXEC GetStudentsWithAllergies @AllergyID = 1;
 
 --Tính tổng chi phí các bữa ăn cho một lớp học trong một ngày cụ thể
 CREATE PROCEDURE GetTotalMealCostForClassByDay
@@ -39,9 +42,11 @@ CREATE PROCEDURE GetTotalMealCostForClassByDay
     @DayOfWeek VARCHAR(10)
 AS
 BEGIN
-    SELECT SUM(Quantity * PricePerUnit) AS TotalCost
+    SELECT SUM(MealIngredients.Quantity * PricePerUnit) AS TotalCost
     FROM MealPlans
     INNER JOIN MealIngredients ON MealPlans.MealID = MealIngredients.MealID
     INNER JOIN Ingredients ON MealIngredients.IngredientID = Ingredients.IngredientID
     WHERE MealPlans.ClassID = @ClassID AND MealPlans.DayOfWeek = @DayOfWeek;
 END;
+
+EXEC GetTotalMealCostForClassByDay @ClassID = 1, @DayOfWeek = 'Monday';

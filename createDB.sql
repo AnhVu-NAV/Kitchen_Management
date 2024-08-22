@@ -1,15 +1,32 @@
-﻿CREATE DATABASE KitchenManagement;
+﻿CREATE DATABASE KitchenManagement
+ON 
+(
+    NAME = N'KitchenManagement',
+    FILENAME = 'D:\Anh Vu Nguyen\FPT_University\Semester 3\DBI202\Assigment_2\Data\KitchenManagement.mdf',
+    SIZE = 8192KB,
+    MAXSIZE = UNLIMITED,
+    FILEGROWTH = 65536KB
+)
+LOG ON 
+(
+    NAME = N'KitchenManagement_log',
+    FILENAME = 'D:\Anh Vu Nguyen\FPT_University\Semester 3\DBI202\Assigment_2\Data\KitchenManagement_log.ldf',
+    SIZE = 8192KB,
+    MAXSIZE = 2048GB,
+    FILEGROWTH = 65536KB
+);
+
+
 
 USE KitchenManagement;
 
--- Tạo bảng Students
-CREATE TABLE Students (
-    StudentID INT PRIMARY KEY,
+-- Tạo bảng Teachers
+CREATE TABLE Teachers (
+    TeacherID INT PRIMARY KEY,
     FirstName VARCHAR(50),
     LastName VARCHAR(50),
-    DateOfBirth DATE,
-    ClassID INT,
-    FOREIGN KEY (ClassID) REFERENCES Classes(ClassID)
+    PhoneNumber VARCHAR(15),
+    Email VARCHAR(50)
 );
 
 -- Tạo bảng Classes
@@ -20,13 +37,14 @@ CREATE TABLE Classes (
     FOREIGN KEY (TeacherID) REFERENCES Teachers(TeacherID)
 );
 
--- Tạo bảng Teachers
-CREATE TABLE Teachers (
-    TeacherID INT PRIMARY KEY,
+-- Tạo bảng Students
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
     FirstName VARCHAR(50),
     LastName VARCHAR(50),
-    PhoneNumber VARCHAR(15),
-    Email VARCHAR(50)
+    DateOfBirth DATE,
+    ClassID INT,
+    FOREIGN KEY (ClassID) REFERENCES Classes(ClassID)
 );
 
 -- Tạo bảng Meals

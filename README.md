@@ -15,6 +15,9 @@ Dự án bao gồm các file SQL để tạo và quản lý cơ sở dữ liệu
 - `trigger.sql`: Định nghĩa một trigger trong SQL Server.
 - `procedure.sql`: Định nghĩa một thủ tục trong SQL Server.
 
+## ERD 
+![Alt text](./ERD_Assigment_DBI202_BL5.png)
+
 ## Các bảng và mối quan hệ
 Hệ thống bao gồm các bảng sau:
 
